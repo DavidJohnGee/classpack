@@ -1,0 +1,25 @@
+action:
+    parameters:
+        channel: '#general'
+        message: '{{trigger}}'
+    ref: chatops.post_message
+criteria:
+    trigger.host:
+        pattern: 192.168.0.189
+        type: eq
+    trigger.pattern:
+        pattern: Logical link.*down$
+        type: eq
+description: Test rule
+enabled: true
+name: ghost2logger_rule_1
+pack: classpack
+ref: classpack.ghost2logger_rule_1
+tags: []
+trigger:
+    parameters: {}
+    ref: ghost2logger.pattern_match
+    type: ghost2logger.pattern_match
+type:
+    parameters: {}
+    ref: standard
