@@ -1,0 +1,22 @@
+action:
+    parameters:
+        channel: '#general'
+        message: '{{trigger. body.message }}'
+    ref: chatops.post_message
+criteria:
+    trigger.body.name:
+        pattern: .*
+        type: matchregex
+description: Webhook demo rule
+enabled: true
+name: webhook_rule_1
+pack: classpack
+ref: classpack.webhook_rule_1
+tags: []
+trigger:
+    parameters:
+        url: demo
+    type: core.st2.webhook
+type:
+    parameters: {}
+    ref: standard

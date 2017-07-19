@@ -1,0 +1,22 @@
+action:
+    parameters:
+        channel: '#general'
+        execution_id: '{{trigger.execution_id}}'
+    ref: chatops.post_result
+criteria:
+    trigger.route:
+        pattern: slack
+        type: equals
+description: Grabs things from the "slack" route and pushes the result to slack via hubot.
+enabled: true
+name: slack_rule_1
+pack: classpack
+ref: classpack.slack_rule_1
+tags: []
+trigger:
+    parameters: {}
+    ref: core.st2.generic.notifytrigger
+    type: core.st2.generic.notifytrigger
+type:
+    parameters: {}
+    ref: standard

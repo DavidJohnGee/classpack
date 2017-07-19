@@ -1,0 +1,12 @@
+---
+name: "myechoactionarray"
+runner_type: "python-script"
+description: "Print messages to std out."
+enabled: true
+entry_point: "myechoactionarray.py"
+parameters:
+  message:
+    type: "array"
+    description: "Message to print"
+    required: true
+    position: 0

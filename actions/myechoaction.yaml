@@ -1,0 +1,12 @@
+---
+name: "myechoaction"
+runner_type: "python-script"
+description: "Print message to std out. If message = 'working', we get success."
+enabled: true
+entry_point: "myechoaction.py"
+parameters:
+  message:
+    type: "string"
+    description: "Message to print"
+    required: true
+    position: 0
