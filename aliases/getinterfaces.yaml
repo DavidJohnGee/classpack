@@ -1,0 +1,11 @@
+---
+name: "vrouter_interface_query"
+description: "Perform a query and get vRouter interfaces"
+action_ref: "classpack.vroutergetinterfacelist"
+ack:
+  enabled: true
+formats:
+  - "get vrouter interfaces"
+result:
+  enabled: true
+  format: "Router interfaces\n {{ execution.result.parsedoutput.stdout }}"

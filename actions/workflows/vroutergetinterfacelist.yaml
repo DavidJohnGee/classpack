@@ -4,20 +4,16 @@ version: '2.0'
 classpack.vroutergetinterfacelist:
   input:
     - hostname
+    - username
+    - password
   tasks:
-    publishcredentials:
-      action: classpack.publishcredentials
-      on-success:
-        - postgetints
-      publish:
-        creds: <% task(publishcredentials).result.result %>
     postgetints:
       # [105, 26]
       action: core.http
       input:
-        username: <% $.creds.username %>
+        username: <% $.username %>
         url: https://<% $.hostname %>/rest/op/show/interfaces
-        password: <% $.creds.password %>
+        password: <% $.password %>
         method: "POST"
         verify_ssl_cert: false
       on-success:
@@ -28,9 +24,9 @@ classpack.vroutergetinterfacelist:
       # [105, 128]
       action: core.http
       input:
-        username: <% $.creds.username %>
+        username: <% $.username %>
         url: https://<% $.hostname %>/<% $.postoutput.headers.Location %>
-        password: <% $.creds.password %>
+        password: <% $.password %>
         method: "GET"
         verify_ssl_cert: false
       on-success:

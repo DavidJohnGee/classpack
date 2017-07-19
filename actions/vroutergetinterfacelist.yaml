@@ -10,7 +10,6 @@
   "parameters": {
     "skip_notify": {
       "default": [
-        "publishcredentials",
         "postgetints",
         "getgetints",
         "parseoutput",
@@ -24,9 +23,15 @@
       "required": true,
       "type": "string"
     },
+    "username": {
+      "required": true,
+      "type": "string",
+    },
+    "password": {
+      "required": true,
+      "type": "string",
+    }
   },
-  "ref": "default.vRouterGetInterfaceList",
-  "id": "58a6beb3c4da5f06fe5b2777",
-  "uid": "action:default:vRouterGetInterfaceList"
+  "ref": "classpack.vRouterGetInterfaceList",
 }
 
