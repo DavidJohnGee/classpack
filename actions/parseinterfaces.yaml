@@ -1,0 +1,13 @@
+---
+name: parseinterfaces
+pack: classpack
+runner_type: "local-shell-cmd"
+description: Parses text from a REST call to 'show interfaces'
+enabled: true
+entry_point: parseinterfaces.sh
+parameters:
+    restresponse:
+        type: string
+        description: The response from the REST call to 'show interfaces'
+        required: true
+        position: 1

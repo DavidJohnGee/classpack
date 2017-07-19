@@ -1,0 +1,46 @@
+---
+version: '2.0'
+
+classpack.vroutergetinterfacelist:
+  input:
+    - hostname
+  tasks:
+    publishcredentials:
+      action: classpack.publishcredentials
+      on-success:
+        - postgetints
+      publish:
+        creds: <% task(publishcredentials).result.result %>
+    postgetints:
+      # [105, 26]
+      action: core.http
+      input:
+        username: <% $.creds.username %>
+        url: https://<% $.hostname %>/rest/op/show/interfaces
+        password: <% $.creds.password %>
+        method: "POST"
+        verify_ssl_cert: false
+      on-success:
+        - getgetints
+      publish:
+        postoutput: <% task(postgetints).result %>
+    getgetints:
+      # [105, 128]
+      action: core.http
+      input:
+        username: <% $.creds.username %>
+        url: https://<% $.hostname %>/<% $.postoutput.headers.Location %>
+        password: <% $.creds.password %>
+        method: "GET"
+        verify_ssl_cert: false
+      on-success:
+        - parseoutput
+      publish:
+        getoutput: <% task(getgetints).result %>
+    parseoutput:
+      # [105, 230]
+      action: classpack.parseinterfaces
+      input:
+        restresponse: <% $.getoutput.body %>
+      publish:
+        parsedoutput: <% task(parseoutput).result %>

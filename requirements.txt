@@ -1,0 +1,6 @@
+python_dateutil == 2.6.0
+setuptools >= 21.0.0
+Flask
+Jinja2
+Flask-RESTful
+jsonschema

@@ -1,0 +1,32 @@
+{
+  "name": "vroutergetinterfacelist",
+  "runner_type": "mistral-v2",
+  "tags": [],
+  "enabled": true,
+  "description": "This end point is a workflow that gets vrouter interface information and marshalls it into JSON then throws it at Slack.",
+  "pack": "classpack",
+  "entry_point": "workflows/vroutergetinterfacelist.yaml",
+  "notify": {},
+  "parameters": {
+    "skip_notify": {
+      "default": [
+        "publishcredentials",
+        "postgetints",
+        "getgetints",
+        "parseoutput",
+        "postresult",
+        ""
+      ],
+      "type": "array",
+      "description": "List of tasks to skip notifications for."
+    },
+    "hostname": {
+      "required": true,
+      "type": "string"
+    },
+  },
+  "ref": "default.vRouterGetInterfaceList",
+  "id": "58a6beb3c4da5f06fe5b2777",
+  "uid": "action:default:vRouterGetInterfaceList"
+}
+

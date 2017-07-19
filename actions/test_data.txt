@@ -1,0 +1,5 @@
+Codes: S - State, L - Link, u - Up, D - Down, A - Admin Down
+Interface        IP Address                        S/L  Description
+---------        ----------                        ---  -----------
+dp0p33p1         192.168.45.20/24                  u/u
+lo               1.1.1.1/32                        u/u
