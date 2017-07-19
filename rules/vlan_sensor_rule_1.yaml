@@ -1,0 +1,25 @@
+action:
+    parameters:
+        channel: '#general'
+        message: VLAN {{trigger.vlan}} created
+    ref: chatops.post_message
+criteria:
+    trigger.description:
+        pattern: __exists__
+        type: nequals
+    trigger.operation:
+        pattern: set
+        type: eq
+description: Test rule 1
+enabled: true
+name: vlan_sensor_rule_1
+pack: classpack
+ref: classpack.vlan_sensor_rule_1
+tags: []
+trigger:
+    parameters: {}
+    ref: classpack.receivedcall
+    type: classpack.receivedcall
+type:
+    parameters: {}
+    ref: standard
