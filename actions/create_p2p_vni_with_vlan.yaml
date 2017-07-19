@@ -1,0 +1,70 @@
+---
+name: create_p2p_vni_with_vlan
+description: Create VLAN, VNI and configure interface as Access or Trunk, and validate interface state. 
+enabled: true
+runner_type: mistral-v2
+entry_point: workflows/create_p2p_vni_with_vlan.yaml
+parameters:
+    mgmt_ip:
+        type: string
+        description: Management IP address of the target device
+        required: true
+        position: 0
+    username:
+        type: string
+        description: Login user name to connect to the device
+        default: admin
+        position: 1
+    password:
+        type: string
+        description: Login password to connect to the device
+        default: password
+        secret: true
+        position: 2
+    vlan_and_vni_id:
+        type: string
+        description: Number that represents a VLAN & VNI for a p2p VxLAN
+        required: true
+        position: 3
+    vlan_and_vni_desc:
+        type: string
+        description: VLAN & VNI description. Quote if using whitespace.
+        position: 4
+    intf_type:
+        type: string
+        enum:
+          - ethernet
+          - gigabitethernet
+          - tengigabitethernet
+          - fortygigabitethernet
+          - hundredgigabitethernet
+          - port_channel
+          - ve
+          - loopback
+        default: tengigabitethernet
+        description: Interface type
+        required: true
+        position: 5
+    intf_name:
+        type: string
+        description: Single port. Examples for VDX, SLX are  24/0/1 or 1/13.
+        required: true
+        position: 6
+    enabled:
+        type: boolean
+        description: Select true to enable the port, false to disable the port
+        default: true
+        position: 7
+    switchport_mode:
+        type: string
+        description: Switch port mode
+        enum:
+          - access
+          - trunk
+        default: access
+        required: true
+        position: 8
+    intf_desc:
+        type: string
+        description: Interface description without any space
+        position: 9
