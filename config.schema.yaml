@@ -10,9 +10,3 @@
     type: "string"
     secret: true
     required: true
-  sensorport:
-    description: "Sensor port for Swagger"
-    type: "integer"
-    secret: false
-    required: true
-    default: 12021
