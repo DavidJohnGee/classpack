@@ -1,0 +1,24 @@
+action:
+    parameters:
+        message: "Ghost2logger message is: {{ trigger.message }}"
+        channel: "#general"
+    ref: chatops.post_message
+criteria:
+    trigger.host:
+        pattern: 172.16.44.2
+        type: eq
+    trigger.pattern:
+        pattern: .*
+        type: eq
+enabled: true
+name: ghost2logger_test
+pack: ghost2logger
+ref: ghost2logger.ghost2logger_test
+tags: []
+trigger:
+    parameters: {}
+    ref: ghost2logger.pattern_match
+    type: ghost2logger.pattern_match
+type:
+    parameters: {}
+    ref: standard
