@@ -1,0 +1,10 @@
+---
+ref: classpack
+name: classpack
+description: A class based learning pack with a workflow, shell and Python actions.
+keywords:
+    - vrouter
+    - not_production
+version: 0.1.0
+author: dgee
+email: david.gee@ipengineer.net
