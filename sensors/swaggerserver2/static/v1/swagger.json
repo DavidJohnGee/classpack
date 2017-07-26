@@ -1,0 +1,301 @@
+{
+  "info": {
+    "version": "1.0.0", 
+    "description": "Device Level API for creating port level VLANs", 
+    "title": "Device Port API"
+  }, 
+  "paths": {
+    "/device/": {
+      "get": {
+        "produces": [
+          "application/json"
+        ], 
+        "tags": [
+          "device"
+        ], 
+        "responses": {
+          "200": {
+            "description": "Device info", 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Devices"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "summary": "Get known Device info"
+      }
+    }, 
+    "/push/": {
+      "post": {
+        "summary": "Push New Device Info", 
+        "responses": {
+          "204": {
+            "description": "Push New Device Info"
+          }
+        }, 
+        "tags": [
+          "push"
+        ]
+      }
+    }, 
+    "/device/{device_id}/port/{port}": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "Device's Port Info", 
+            "schema": {
+              "$ref": "#/definitions/PortAttributes"
+            }
+          }
+        }, 
+        "summary": "Manipulate Device's Port Info", 
+        "description": "Manipulate a Device's Port Entry", 
+        "parameters": [
+          {
+            "$ref": "#/parameters/device_id"
+          }, 
+          {
+            "$ref": "#/parameters/port"
+          }, 
+          {
+            "schema": {
+              "$ref": "#/definitions/PortAttributes"
+            }, 
+            "name": "deviceinput", 
+            "in": "body"
+          }
+        ], 
+        "tags": [
+          "device"
+        ]
+      }, 
+      "delete": {
+        "summary": "Delete Device Info", 
+        "responses": {
+          "204": {
+            "description": "Delete Device & Port Info", 
+            "schema": {
+              "$ref": "#/definitions/PortAttributes"
+            }
+          }
+        }, 
+        "parameters": [
+          {
+            "$ref": "#/parameters/device_id"
+          }, 
+          {
+            "$ref": "#/parameters/port"
+          }, 
+          {
+            "schema": {
+              "$ref": "#/definitions/PortAttributes"
+            }, 
+            "name": "deviceinput", 
+            "in": "body"
+          }
+        ], 
+        "tags": [
+          "device"
+        ]
+      }, 
+      "get": {
+        "produces": [
+          "application/json"
+        ], 
+        "summary": "Get known Device info", 
+        "responses": {
+          "200": {
+            "description": "Device Port Info", 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/PortAttributes"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "parameters": [
+          {
+            "$ref": "#/parameters/device_id"
+          }, 
+          {
+            "$ref": "#/parameters/port"
+          }
+        ], 
+        "tags": [
+          "device"
+        ]
+      }
+    }, 
+    "/device/{device_id}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ], 
+        "summary": "Get known Device info", 
+        "responses": {
+          "200": {
+            "description": "Device info", 
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Device"
+              }, 
+              "type": "array"
+            }
+          }
+        }, 
+        "parameters": [
+          {
+            "$ref": "#/parameters/device_id"
+          }
+        ], 
+        "tags": [
+          "device"
+        ]
+      }
+    }
+  }, 
+  "parameters": {
+    "port": {
+      "required": true, 
+      "type": "string", 
+      "description": "Port information", 
+      "in": "path", 
+      "name": "port"
+    }, 
+    "device_id": {
+      "required": true, 
+      "type": "string", 
+      "description": "Device's Unique identifier", 
+      "in": "path", 
+      "name": "device_id"
+    }
+  }, 
+  "tags": [
+    {
+      "name": "device", 
+      "description": "Adds and Deletions for a device"
+    }, 
+    {
+      "name": "push", 
+      "description": "Push information to devices"
+    }
+  ], 
+  "basePath": "/v1", 
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  }, 
+  "definitions": {
+    "Device": {
+      "type": "object", 
+      "properties": {
+        "attributes": {
+          "items": {
+            "$ref": "#/definitions/Port"
+          }, 
+          "type": "array"
+        }, 
+        "port_id": {
+          "type": "string"
+        }
+      }
+    }, 
+    "VLAN": {
+      "type": "string"
+    }, 
+    "PortAttributes": {
+      "required": [
+        "description", 
+        "vlan", 
+        "kind", 
+        "enforced", 
+        "executed"
+      ], 
+      "type": "object", 
+      "properties": {
+        "enforced": {
+          "default": false, 
+          "type": "boolean"
+        }, 
+        "executed": {
+          "default": false, 
+          "type": "boolean"
+        }, 
+        "kind": {
+          "enum": [
+            "trunk", 
+            "access"
+          ], 
+          "type": "string", 
+          "description": "Port kind"
+        }, 
+        "vlan": {
+          "items": {
+            "$ref": "#/definitions/VLAN"
+          }, 
+          "type": "array"
+        }, 
+        "description": {
+          "type": "string"
+        }
+      }
+    }, 
+    "Port": {
+      "required": [
+        "vlan"
+      ], 
+      "type": "object", 
+      "properties": {
+        "enforced": {
+          "default": false, 
+          "type": "boolean"
+        }, 
+        "executed": {
+          "default": false, 
+          "type": "boolean"
+        }, 
+        "kind": {
+          "enum": [
+            "trunk", 
+            "access"
+          ], 
+          "type": "string", 
+          "description": "Port kind"
+        }, 
+        "vlan": {
+          "items": {
+            "$ref": "#/definitions/VLAN"
+          }, 
+          "type": "array"
+        }, 
+        "description": {
+          "type": "string"
+        }
+      }
+    }, 
+    "Devices": {
+      "type": "object", 
+      "properties": {
+        "device": {
+          "type": "string"
+        }, 
+        "attributes": {
+          "items": {
+            "$ref": "#/definitions/Device"
+          }, 
+          "type": "array"
+        }
+      }
+    }
+  }, 
+  "security": [
+    {
+      "basicAuth": []
+    }
+  ], 
+  "swagger": "2.0"
+}

@@ -1,0 +1,40 @@
+---
+  enabled: true
+  class_name: "ClassSensor2"
+  entry_point: "swaggerserver2/classsensor.py"
+  description: "Sensor for training"
+  trigger_types:
+    -
+      name: receivedcomplexcall
+      description: "Trigger fires contents of call being made so we can create rules."
+      payload_schema:
+        type: object
+        properties:
+          operation:
+            description: "set, delete"
+            type: string
+          device:
+            description: "Device name/host"
+            type: string
+          port:
+            description: "Port name"
+            type: string
+          kind:
+            description: "Port kind (access|trunk)"
+            type: string
+          vlan:
+            description: "VLAN number"
+            type: string
+          description:
+            description: "VLAN information"
+            type: string
+
+
+
+
+
+
+
+
+
+

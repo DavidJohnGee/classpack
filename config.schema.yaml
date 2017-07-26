@@ -16,3 +16,9 @@
     secret: false
     required: true
     default: 12021
+  sensor2port:
+    description: "Sensor port for Swagger2"
+    type: "integer"
+    secret: false
+    required: true
+    default: 12022
